@@ -244,6 +244,7 @@
     <string name="Dashboard">Dashboard</string>
     <string name="Host">Host</string>
     <string name="Host_name">Host Name</string>
+    <string name="Maximum_ports_allowed_are_thousand_only">Maximum ports allowed are 1000 only</string>
     <string name="No_ports_found">No ports found</string>
     <string name="Open">Open</string>
     <string name="Please_Wait">Please Wait</string>

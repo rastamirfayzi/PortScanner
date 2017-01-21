@@ -25,6 +25,8 @@
     <string name="Please_enter_valid_host">Please enter valid host name</string>
     <string name="Please_enter_valid_port_range">Please enter valid port/range</string>
     <string name="Port_range_must_be_between_0_65536">Port range must be between 0 to 65536</string>
+    <string name="Maximum_ports_allowed_are_thousand_only">Maximum ports allowed are 1000 only</string>
+
 
     <string name="Host">Host</string>
 

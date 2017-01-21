@@ -2,13 +2,11 @@ package com.portscanner;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -25,19 +23,16 @@ import com.portscanner.Model.PortBean;
 import com.portscanner.Utility.ValidationConstant;
 
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
 import java.net.Socket;
-import java.net.SocketAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 
-public class Dashboard extends AppCompatActivity {
+public class TestDashboard extends AppCompatActivity {
     public static int VALUE_4 = 4;
     Context mContext;
     ImageView iv_back, iv_filter;
@@ -375,7 +370,7 @@ public class Dashboard extends AppCompatActivity {
      * method to result on result activity
      */
     public void showResults() {
-        Intent intent = new Intent(Dashboard.this, ScanResult.class);
+        Intent intent = new Intent(TestDashboard.this, ScanResult.class);
         intent.putExtra("port_list", arrPortBean);
         intent.putExtra("host_name", strHostName);
         intent.putExtra("port_no", strPort);
@@ -482,37 +477,13 @@ public class Dashboard extends AppCompatActivity {
                 if (shouldStop)
                     break;
 
-                PortBean portBean = new PortBean();
-                Socket ServerSok = null;
-
-                try {
-
-                    ServerSok = new Socket();
-                    ServerSok.setSoTimeout(1000 * seekProgress);
-                    SocketAddress socketAddress = new InetSocketAddress(strHostName, Integer.parseInt(arrLocalPort.get(i)));
-                    ServerSok.connect(socketAddress, 1000 * seekProgress);
-                    portBean.setPortNo(arrLocalPort.get(i));
-                    portBean.setPortName(ServerSok.getInetAddress().getHostAddress());
-                    portBean.setPortStatus("open");
-                    addBean(portBean);
-                    //  arrPortBean.add(portBean);
+                try{
+                    Socket ServerSok = new Socket(strHostName,i);
+                    System.out.println("Port in use: " + i );
                     ServerSok.close();
                     continue;
-                } catch (Exception e) {
-                    Log.e(getClass().getName(), "Port........exception" + e.toString());
-                }
+                }catch (Exception e) {
 
-                try {
-                    portBean.setPortNo(arrLocalPort.get(i));
-                    portBean.setPortStatus("close");
-                    portBean.setPortName(InetAddress.getByName(strHostName).getHostAddress());
-
-                    //   arrPortBean.add(portBean);
-                } catch (UnknownHostException e) {
-                    portBean.setPortName(strHostName);
-                    e.printStackTrace();
-                }finally {
-                    addBean(portBean);
                 }
 
                 Log.e(getClass().getName(), "Port........not in use" + i);
