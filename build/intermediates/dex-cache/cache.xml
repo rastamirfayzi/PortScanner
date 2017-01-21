@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/libs/internal_impl-23.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.0"
+        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
+        <dex dex="/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.0_cb9070a03be568fc9b8314039fc0c1b029f3262e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.0"
+        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
+        <dex dex="/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.1.0_e3d8b0bef1f2f6aeca51dbd2f603a90b387a48f7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/administrator/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.0/support-annotations-23.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.0"
+        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
+        <dex dex="/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.0_e1fbe9e39e0f711a562fc910adcd3a7cd93e19be.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.0"
+        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
+        <dex dex="/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.1.0_09c8de9d7b62b28fe0b346aff39f4cca89772720.jar" />
+    </item>
+
+</items>

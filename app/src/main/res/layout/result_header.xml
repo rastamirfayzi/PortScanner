@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/padding_7"
+    android:paddingBottom="@dimen/padding_7"
+    android:background="@color/color_start_scan"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:padding="@dimen/padding_5"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/Host"
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/text_size14" />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/Port_No"
+        android:padding="@dimen/padding_5"
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/text_size14" />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/padding_5"
+        android:text="@string/Status"
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/text_size14" />
+
+</LinearLayout>

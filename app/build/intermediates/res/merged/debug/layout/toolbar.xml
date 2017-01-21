@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/drop_shadow">
+
+   <RelativeLayout
+       android:paddingRight="@dimen/padding_15"
+       android:background="@color/color_white"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <LinearLayout
+           android:paddingLeft="@dimen/padding_2"
+           android:paddingRight="@dimen/padding_2"
+           android:paddingTop="@dimen/padding_10"
+           android:paddingBottom="@dimen/padding_10"
+           android:layout_alignParentLeft="true"
+           android:orientation="horizontal"
+           android:gravity="center_vertical"
+           android:layout_marginLeft="@dimen/padding_15"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+           <ImageView
+               android:id="@+id/iv_back"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentLeft="true"
+               android:layout_centerVertical="true"
+               android:src="@drawable/back" />
+           <ImageView
+               android:id="@+id/iv_menu"
+               android:layout_marginLeft="@dimen/padding_5"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentLeft="true"
+               android:layout_centerVertical="true"
+               android:src="@drawable/small_logo" />
+
+       </LinearLayout>
+
+       <TextView
+           android:id="@+id/tv_title"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Mark Webster"
+           android:layout_centerInParent="true"
+           android:maxLines="1"
+           android:textColor="@color/color_header_text"
+           android:textSize="@dimen/text_size_18"
+           android:textStyle="normal" />
+
+       <ImageView
+           android:id="@+id/iv_filter"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerVertical="true"
+           android:layout_alignParentRight="true"
+           android:src="@drawable/filter" />
+   </RelativeLayout>
+    <View
+        android:background="@drawable/drop_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"></View>
+
+</LinearLayout>
