@@ -27,6 +27,7 @@ import com.portscanner.R;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -134,6 +135,53 @@ public class ValidationConstant {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static String  getCurrentDate() {
+		String today=null;
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+		try {
+			today = sdf.format(new Date());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return today;
+	}
+	/*public static Date  getCurrentDate() {
+		Date today=null;
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY", Locale.ENGLISH);
+		try {
+			today = new Date();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return today;
+	}*/
+	public static String getCurrentTime() {
+		String today=null;
+		SimpleDateFormat stf = new SimpleDateFormat("h:mma", Locale.ENGLISH);
+		try {
+			today = stf.format(new Date());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return today;
+	}
+	public static String decreaseOneDay(String StrDate){
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+		Date dateNew=null;
+		try {
+			Date date = sdf.parse(StrDate);
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(date);
+			calendar.add(Calendar.DATE, -1);  // number of days to add
+			dateNew = calendar.getTime();
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		String reportDate = sdf.format(dateNew);
+		return  reportDate;
 	}
 
 

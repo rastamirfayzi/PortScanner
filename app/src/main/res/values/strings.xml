@@ -31,5 +31,17 @@
     <string name="Host">Host</string>
 
     <string name="No_ports_found">No ports found</string>
+    <string name="History">History</string>
+
+    <string name="Host_name_">Host Name :</string>
+    <string name="No_of_ports">No. of Ports :</string>
+    <string name="Open_Ports">Open Ports :</string>
+    <string name="Closed_Ports">Closed Ports :</string>
+    <string name="Scan_Status">Scan Status :</string>
+
+    <string name="Complete_Scan">Complete Scan</string>
+    <string name="Manually_Stopped">Manually Stopped</string>
+    <string name="View_More">View More</string>
+    <string name="are_you_sure_you_want_to_stop_this_scanning">Are you sure you want to stop this scanning ?</string>
 
 </resources>

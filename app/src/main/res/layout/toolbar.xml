@@ -50,13 +50,22 @@
            android:textSize="@dimen/text_size_18"
            android:textStyle="normal" />
 
-       <ImageView
-           android:id="@+id/iv_filter"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_centerVertical="true"
-           android:layout_alignParentRight="true"
-           android:src="@drawable/filter" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/iv_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/filter" />
+                <ImageView
+                    android:id="@+id/iv_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/history" />
+            </RelativeLayout>
    </RelativeLayout>
     <View
         android:background="@drawable/drop_shadow"

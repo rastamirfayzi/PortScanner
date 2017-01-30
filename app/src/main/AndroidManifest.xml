@@ -29,7 +29,14 @@
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme.NoActionBar"
         android:windowSoftInputMode="stateAlwaysHidden">
+
     </activity>
+        <activity android:name=".ScanHistory"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden">
+
+        </activity>
 
     </application>
 

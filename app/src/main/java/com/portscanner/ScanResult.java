@@ -4,33 +4,26 @@ import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.method.ScrollingMovementMethod;
 import android.view.Display;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-
 import com.portscanner.Adapter.PortAdapter;
 import com.portscanner.Model.PortBean;
 import com.portscanner.Utility.ValidationConstant;
-
-import java.net.InetAddress;
 import java.util.ArrayList;
 
 
 public class ScanResult extends AppCompatActivity {
     Context mContext;
-    ImageView iv_back,iv_filter;
-    TextView tv_title;
+    ImageView iv_back,iv_filter,iv_history;
+    TextView tv_title,tv_scan_status;
     TextView et_host_name;
     TextView et_port;
     ListView lv_report;
@@ -39,6 +32,9 @@ public class ScanResult extends AppCompatActivity {
     String strHostName,strPort;
     String strFilter="all";
     ImageView iv_menu;
+    LinearLayout ll_scan_status,ll_port;
+    boolean show_scan_status;
+    String  scan_stop_status;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +43,8 @@ public class ScanResult extends AppCompatActivity {
         arrPortBean = (ArrayList<PortBean>) getIntent().getSerializableExtra("port_list");
         strHostName =  getIntent().getStringExtra("host_name");
         strPort =  getIntent().getStringExtra("port_no");
+        show_scan_status = getIntent().getBooleanExtra("show_scan_status",false);
+        scan_stop_status = getIntent().getStringExtra("scan_stop_status");
         initLayout();
     }
 
@@ -56,12 +54,25 @@ public class ScanResult extends AppCompatActivity {
     public void  initLayout(){
         iv_back=(ImageView)findViewById(R.id.iv_back);
         iv_filter=(ImageView)findViewById(R.id.iv_filter);
+        iv_history = (ImageView) findViewById(R.id.iv_history);
         tv_title=(TextView) findViewById(R.id.tv_title);
         iv_menu=(ImageView)findViewById(R.id.iv_menu);
         et_host_name=(TextView) findViewById(R.id.et_host_name);
+        tv_scan_status=(TextView)findViewById(R.id.tv_scan_status);
         et_port=(TextView) findViewById(R.id.et_port);
         lv_report=(ListView)findViewById(R.id.lv_report);
+        ll_scan_status=(LinearLayout)findViewById(R.id.ll_scan_status);
+        ll_port=(LinearLayout)findViewById(R.id.ll_port);
+        iv_history.setVisibility(View.GONE);
         tv_title.setText(mContext.getResources().getString(R.string.Scanning_Result));
+        if (show_scan_status){
+            ll_scan_status.setVisibility(View.VISIBLE);
+            ll_port.setVisibility(View.GONE);
+            tv_scan_status.setText(scan_stop_status);
+        }else{
+            ll_scan_status.setVisibility(View.GONE);
+            ll_port.setVisibility(View.VISIBLE);
+        }
         et_host_name.setText(strHostName);
         et_port.setText(strPort);
 
@@ -96,12 +107,13 @@ public class ScanResult extends AppCompatActivity {
         ViewGroup myHeader = (ViewGroup)myinflater.inflate(R.layout.result_header, lv_report, false);
         lv_report.addHeaderView(myHeader, null, false);
 
-        portAdapter=new PortAdapter(arrPortBean,mContext);
-        lv_report.setAdapter(portAdapter);
+        if (arrPortBean!=null && arrPortBean.size()>0){
+            portAdapter=new PortAdapter(arrPortBean,mContext);
+            lv_report.setAdapter(portAdapter);
+        }
 
 
-
-    }
+   }
 
     public PopupWindow pw;
     public View pview = null;

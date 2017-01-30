@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/padding_10"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_view_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text="@string/View_More"
+        android:textColor="@color/color_header_text"
+        android:textSize="@dimen/text_size15" />
+</LinearLayout>

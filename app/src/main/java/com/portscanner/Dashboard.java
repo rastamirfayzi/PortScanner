@@ -21,6 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.portscanner.Database.PortScanDataBase;
 import com.portscanner.Model.PortBean;
 import com.portscanner.Utility.ValidationConstant;
 
@@ -31,16 +32,19 @@ import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
+
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 public class Dashboard extends AppCompatActivity {
     public static int VALUE_4 = 4;
     Context mContext;
-    ImageView iv_back, iv_filter;
+    ImageView iv_back, iv_filter,iv_history;
     TextView tv_start_scan, tv_title, tv_seek_progress;
     EditText et_host_name;
     EditText et_port;
@@ -49,9 +53,6 @@ public class Dashboard extends AppCompatActivity {
     LinearLayout ll_start_scan;
     List<String> arrPortList;
     ArrayList<PortBean> arrPortBean;
-    /**
-     * method to show scan dialog
-     */
     ProgressBar progressBar;
     TextView tv_percent;
     TextView tv_counter;
@@ -65,6 +66,8 @@ public class Dashboard extends AppCompatActivity {
     int PORTLIMIT=1000;
     int MAX_PORT_VALUE=65536;
     int MIN_PORT_VALUE=0;
+    PortScanDataBase portScanDataBase;
+    long current_scan_no=-1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,8 @@ public class Dashboard extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         mContext = this;
         initLayout();
+        portScanDataBase=new PortScanDataBase(mContext);
+        portScanDataBase.getWritableDatabase();
     }
 
     /**
@@ -80,6 +85,7 @@ public class Dashboard extends AppCompatActivity {
     public void initLayout() {
         iv_back = (ImageView) findViewById(R.id.iv_back);
         iv_filter = (ImageView) findViewById(R.id.iv_filter);
+        iv_history = (ImageView) findViewById(R.id.iv_history);
         tv_start_scan = (TextView) findViewById(R.id.tv_start_scan);
         tv_title = (TextView) findViewById(R.id.tv_title);
         et_host_name = (EditText) findViewById(R.id.et_host_name);
@@ -91,10 +97,15 @@ public class Dashboard extends AppCompatActivity {
         ll_start_scan = (LinearLayout) findViewById(R.id.ll_start_scan);
         iv_back.setVisibility(View.GONE);
         iv_filter.setVisibility(View.GONE);
+        iv_history.setVisibility(View.VISIBLE);
         tv_title.setText(mContext.getResources().getString(R.string.Dashboard));
         ValidationConstant.hideKeyBoard(mContext, et_host_name);
-
-
+        iv_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showHistory();
+            }
+        });
         ll_start_scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -222,7 +233,6 @@ public class Dashboard extends AppCompatActivity {
                 if (isAllValidPort) {
                     if (arrPortList != null && arrPortList.size() > 0) {
                         if (ValidationConstant.isNetworkAvailable(mContext)) {
-
                             if (strHostName.contains("http") || strHostName.contains("https")) {
                                 GetHostName getHostName = new GetHostName();
                                 getHostName.execute();
@@ -314,6 +324,16 @@ public class Dashboard extends AppCompatActivity {
      */
     public void showScanDialog() {
 
+            if (portScanDataBase!=null){
+                PortBean portBean=new PortBean();
+                portBean.setDate(ValidationConstant.getCurrentDate());
+                portBean.setTime(ValidationConstant.getCurrentTime());
+                portBean.setHostName(strHostName);
+                portBean.setNo_of_ports(""+arrPortList.size());
+                portBean.setTimeout(""+seekProgress);
+                current_scan_no=portScanDataBase.insertScanRecord(portBean);
+            }
+
         try {
             if (dialogScan != null && dialogScan.isShowing()) {
                 return;
@@ -341,14 +361,9 @@ public class Dashboard extends AppCompatActivity {
 
                 @Override
                 public void onClick(View v) {
-                    try {
 
-                        if (connection != null)
-                           shouldStop = true;
-                        dialogScan.dismiss();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    showStopConfirmDialog(mContext.getResources().getString(R.string.are_you_sure_you_want_to_stop_this_scanning));
+
 
 
                 }
@@ -375,14 +390,26 @@ public class Dashboard extends AppCompatActivity {
      * method to result on result activity
      */
     public void showResults() {
+        if (dialogConfirmation!=null &&dialogConfirmation.isShowing()){
+            dialogConfirmation.dismiss();
+        }
         Intent intent = new Intent(Dashboard.this, ScanResult.class);
         intent.putExtra("port_list", arrPortBean);
         intent.putExtra("host_name", strHostName);
         intent.putExtra("port_no", strPort);
+        intent.putExtra("show_scan_status", false);
+        //1 =  complete 2=  manually stopped
+        intent.putExtra("scan_stop_status", "1");
         startActivity(intent);
     }
+    public void showHistory() {
 
+        Intent intent = new Intent(Dashboard.this, ScanHistory.class);
+        startActivity(intent);
+    }
     synchronized public void addBean(PortBean portBean) {
+        portBean.setItemType("record");
+        portScanDataBase.insertScanDetailRecord(portBean,""+current_scan_no);
         arrPortBean.add(portBean);
     }
 
@@ -554,10 +581,88 @@ public class Dashboard extends AppCompatActivity {
         @Override
         protected void onCancelled() {
             super.onCancelled();
-
         }
     }
+    /**
+     * method to show confirmation dialog for deletion of address
+     */
+     Dialog dialogConfirmation;
+    public void showStopConfirmDialog(String message) {
+        try {
 
+            dialogConfirmation = new Dialog(mContext, R.style.DialogCustomTheme);
+            dialogConfirmation.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+            dialogConfirmation.setContentView(R.layout.dialog_confirmation_layout);
+            dialogConfirmation.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+            int width = getWindowManager().getDefaultDisplay()
+                    .getWidth();
+
+            if (width > 480) {
+
+                width = ((width * 2) / 3) + 90;
+                dialogConfirmation.getWindow().setLayout(width, ActionBar.LayoutParams.WRAP_CONTENT);
+
+            }
+
+
+            dialogConfirmation.setCancelable(true);
+
+            TextView txtview_logout_confirm = (TextView) dialogConfirmation
+                    .findViewById(R.id.txtview_alert);
+
+            txtview_logout_confirm.setText(message);
+
+            final TextView button_yes = (TextView) dialogConfirmation
+                    .findViewById(R.id.button_yes);
+
+
+            button_yes.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    dialogConfirmation.dismiss();
+                    try {
+
+                        if (portScanDataBase!=null){
+                            //update record for manually stopped scanning
+                            portScanDataBase.updateScanRecord(""+current_scan_no);
+                        }
+                        if (connection != null)
+                            shouldStop = true;
+                        dialogScan.dismiss();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+            });
+            final TextView button_no = (TextView) dialogConfirmation
+                    .findViewById(R.id.button_no);
+
+            button_no.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    dialogConfirmation.dismiss();
+
+                }
+
+            });
+
+
+            dialogConfirmation.show();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
 
 }
 
