@@ -35,6 +35,7 @@ public class ScanResult extends AppCompatActivity {
     LinearLayout ll_scan_status,ll_port;
     boolean show_scan_status;
     String  scan_stop_status;
+    LinearLayout ll_back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +63,16 @@ public class ScanResult extends AppCompatActivity {
         et_port=(TextView) findViewById(R.id.et_port);
         lv_report=(ListView)findViewById(R.id.lv_report);
         ll_scan_status=(LinearLayout)findViewById(R.id.ll_scan_status);
+        ll_back=(LinearLayout) findViewById(R.id.ll_back);
+
         ll_port=(LinearLayout)findViewById(R.id.ll_port);
+        ll_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         iv_history.setVisibility(View.GONE);
         tv_title.setText(mContext.getResources().getString(R.string.Scanning_Result));
         if (show_scan_status){

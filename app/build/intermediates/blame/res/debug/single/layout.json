@@ -16,20 +16,20 @@
         "source": "/home/administrator/AndroidStudioProjects/PortScanner/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/res/layout/abc_list_menu_item_checkbox.xml"
     },
     {
-        "merged": "/home/administrator/AndroidStudioProjects/PortScanner/app/build/intermediates/res/merged/debug/layout/popup_option_menu.xml",
-        "source": "/home/administrator/AndroidStudioProjects/PortScanner/app/src/main/res/layout/popup_option_menu.xml"
-    },
-    {
         "merged": "/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
         "source": "/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/res/layout/abc_list_menu_item_checkbox.xml"
     },
     {
-        "merged": "/home/administrator/AndroidStudioProjects/PortScanner/app/build/intermediates/res/merged/debug/layout/notification_template_lines.xml",
-        "source": "/home/administrator/AndroidStudioProjects/PortScanner/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/res/layout/notification_template_lines.xml"
+        "merged": "/home/administrator/AndroidStudioProjects/PortScanner/app/build/intermediates/res/merged/debug/layout/popup_option_menu.xml",
+        "source": "/home/administrator/AndroidStudioProjects/PortScanner/app/src/main/res/layout/popup_option_menu.xml"
     },
     {
         "merged": "/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
         "source": "/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/res/layout/abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "/home/administrator/AndroidStudioProjects/PortScanner/app/build/intermediates/res/merged/debug/layout/notification_template_lines.xml",
+        "source": "/home/administrator/AndroidStudioProjects/PortScanner/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/res/layout/notification_template_lines.xml"
     },
     {
         "merged": "/home/administrator/AndroidStudioProjects/PortScanner/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
@@ -60,12 +60,12 @@
         "source": "/home/administrator/AndroidStudioProjects/PortScanner/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/res/layout/abc_activity_chooser_view.xml"
     },
     {
-        "merged": "/home/administrator/AndroidStudioProjects/PortScanner/app/build/intermediates/res/merged/debug/layout/activity_splash.xml",
-        "source": "/home/administrator/AndroidStudioProjects/PortScanner/app/src/main/res/layout/activity_splash.xml"
-    },
-    {
         "merged": "/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/res/merged/debug/layout/activity_splash.xml",
         "source": "/home/administrator/Desktop/new_work/PortScanner/app/src/main/res/layout/activity_splash.xml"
+    },
+    {
+        "merged": "/home/administrator/AndroidStudioProjects/PortScanner/app/build/intermediates/res/merged/debug/layout/activity_splash.xml",
+        "source": "/home/administrator/AndroidStudioProjects/PortScanner/app/src/main/res/layout/activity_splash.xml"
     },
     {
         "merged": "/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
@@ -120,12 +120,12 @@
         "source": "/home/administrator/AndroidStudioProjects/PortScanner/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/res/layout/abc_action_bar_title_item.xml"
     },
     {
-        "merged": "/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
-        "source": "/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/res/layout/abc_screen_simple_overlay_action_mode.xml"
-    },
-    {
         "merged": "/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
         "source": "/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/res/layout/abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
+        "source": "/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/res/layout/abc_screen_simple_overlay_action_mode.xml"
     },
     {
         "merged": "/home/administrator/Desktop/new_work/PortScanner/app/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",

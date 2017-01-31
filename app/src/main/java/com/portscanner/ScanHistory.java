@@ -40,6 +40,8 @@ public class ScanHistory extends AppCompatActivity {
     HistoryAdapter historyAdapter;
     String strCurrentDate;
     int status_for_day=0;
+    ImageView iv_menu;
+    LinearLayout ll_back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +61,8 @@ public class ScanHistory extends AppCompatActivity {
         iv_history=(ImageView)findViewById(R.id.iv_history);
         tv_title=(TextView) findViewById(R.id.tv_title);
         lv_history=(ListView)findViewById(R.id.lv_history);
+        iv_menu=(ImageView)findViewById(R.id.iv_menu);
+        ll_back=(LinearLayout) findViewById(R.id.ll_back);
         iv_filter.setVisibility(View.GONE);
         iv_history.setVisibility(View.GONE);
         tv_title.setText(mContext.getResources().getString(R.string.History));
@@ -68,6 +72,19 @@ public class ScanHistory extends AppCompatActivity {
                 finish();
             }
         });
+        iv_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        ll_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         strCurrentDate=ValidationConstant.getCurrentDate();
       /*  PortBean portBean=new PortBean();
         portBean.setItemType("date");
